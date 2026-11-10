@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+/* Light, bold theme. Change the accent in one place: --accent. */
+:root {
+  --bg: #ffffff;
+  --band: #f1f1f4;
+  --surface: #ffffff;
+  --raised: #f3effb;
+  --ink: #131628;
+  --navy: #131628;
+  --accent-light: #b9a2ff;
+  --muted: #59626a;
+  --line: #dde3df;
+  --accent: #6d28d9;
+  --accent-ink: #ffffff;
+  --accent-soft: #efe7fd;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-band: var(--band);
+  --color-raised: var(--raised);
+  --color-ink: var(--ink);
+  --color-navy: var(--navy);
+  --color-accent-light: var(--accent-light);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --font-sans: var(--font-poppins);
+  --font-hand: var(--font-caveat);
+}
+
+html {
+  /* Slightly smaller base so the whole site reads "zoomed out" (all rem sizes scale with it). */
+  font-size: 87.5%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+/* Hero: notification cards pop in, then float; dashed ring turns slowly. */
+@keyframes hero-pop {
+  from { opacity: 0; transform: translateY(14px) scale(0.85); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes hero-spin {
+  to { rotate: 360deg; }
+}
+.hero-pop { animation: hero-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.hero-float { animation: hero-float 4s ease-in-out infinite; }
+.hero-spin { animation: hero-spin 60s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-pop, .hero-float, .hero-spin { animation: none; }
+}
